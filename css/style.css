@@ -23,19 +23,28 @@ body {
 
 .form-wrapper {
   background: #eee;
+  border-bottom: 1px solid #e5e5e5;
   padding: 20px;
   text-align: center;
-  border-bottom: 1px solid #e5e5e5;
 }
 
-.form-wrapper .form-group {
+#form-workout-entry .form-group {
   margin: 5px;
   width: 25%;
 }
 
-.form-wrapper .form-group input,
-.form-wrapper .form-group select {
+#form-workout-entry .form-group input,
+#form-workout-entry .form-group select {
   width: 100%;
+}
+
+#form-workout-entry .form-group select {
+  width: 100%;
+}
+
+#form-workout-entry .btn {
+  margin: 5px;
+  vertical-align: top;
 }
 
 #workout-log .actions {
@@ -64,4 +73,16 @@ body {
   .form-wrapper {
     border-bottom: 0;
   }
+}
+
+/* Form validation */
+.validation-errors {
+  min-height: 3em;
+}
+.validation-errors ul {
+  color: #a00;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 1em;
+  text-align: left;
 }

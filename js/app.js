@@ -1,4 +1,4 @@
-// Workout Logger
+// Chubby No More
 // Author: Tiago Alves (tiagoadalves at Google's email service)
 
 $(function() {
@@ -97,9 +97,7 @@ $(function() {
 
     // Delegated events for creating new items
     events: {
-      "keypress #new-entry-duration": "createOnEnter",
-      "keypress #new-entry-date": "createOnEnter",
-      "click #new-entry-submit": "createOnEnter"
+      "submit #form-workout-entry": "formSubmit"
     },
 
     // Bind to the Workouts collection's relevant events and
@@ -164,20 +162,20 @@ $(function() {
 
     // On adding a new workout session, add it to the workout log
     // and, consequently, to the browser's local storage.
-    createOnEnter: function(e) {
-      // Check if we're submitting a new workout entry using the enter key
-      if (e.keyCode && e.keyCode != 13) return;
-
+    formSubmit: function (e) {
       Workouts.create({
         type: this.exerciseType.val(),
         duration: this.duration.val(),
         date: this.date.val()
       });
 
-      // Reset all the form elements
+      // Reset all the form elements.
       this.exerciseType.val('');
       this.duration.val('');
       this.date.val('');
+
+      // Prevent the form actually submitting and refreshing the page.
+      return false;
     }
 
   });
