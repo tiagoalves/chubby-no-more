@@ -3,8 +3,9 @@
 
 jQuery(function($) {
 
-  // Custom Parsley validator for the date format dd-mm-yyy
+  // Custom Parsley validators
   window.Parsley
+    // Validator for the date format dd-mm-yyy
     .addValidator('dmydate', {
       requirementType: 'string',
       validateString: function(date, requirement) {
@@ -20,6 +21,16 @@ jQuery(function($) {
       },
       messages: {
         en: 'The date should be in the format dd-mm-yyyy.'
+      }
+    })
+    // Validator for the exercise type
+    .addValidator('exercisetype', {
+      requirementType: 'string',
+      validateString: function(exerciseType, requirement) {
+        return (exerciseType in ChubbyNoMore.exerciseTypes);
+      },
+      messages: {
+        en: 'Invalid exercise type.'
       }
     });
 
