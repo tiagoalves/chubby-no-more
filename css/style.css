@@ -1,0 +1,67 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.header {
+  padding: 0 15px 10px 15px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+
+.form-wrapper {
+  background: #eee;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.form-wrapper .form-group {
+  margin: 5px;
+  width: 25%;
+}
+
+.form-wrapper .form-group input,
+.form-wrapper .form-group select {
+  width: 100%;
+}
+
+#workout-log .actions {
+  text-align: right;
+}
+
+.content-section {
+  margin-bottom: 30px;
+}
+
+.total-duration {
+  text-align: right;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  .header,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  .form-wrapper {
+    border-bottom: 0;
+  }
+}

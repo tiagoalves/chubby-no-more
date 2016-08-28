@@ -4,31 +4,56 @@
   <head>
     <meta charset="utf-8">
     <title>Chubby No More</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
   </head>
 
   <body>
 
-    <div id="main">
+    <div id="main" class="container">
 
-      <section id="workout-entry">
-        <h1>Exercise Logger</h1>
-        <select id="new-entry-exercise-type">
-          <option value="" selected>Select exercise...</option>
-        </select>
-        <input id="new-entry-duration" type="text" placeholder="Time spent (h)">
-        <input id="new-entry-date" type="text" placeholder="dd-mm-yyyy">
-        <button id="new-entry-submit">Add</button>
+      <header class="header clearfix">
+        <h3>Chubby No More</h3>
+      </header>
+
+
+      <section id="workout-entry" class="content-section">
+        <h3>New entry</h3>
+        <div class="form-wrapper">
+
+          <form class="form-inline">
+            <div class="form-group">
+              <label class="sr-only" for="new-entry-exercise-type">Select your exercise</label>
+              <select id="new-entry-exercise-type" class="form-control">
+                <option value="" selected>Exercise...</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="new-entry-duration">Time Spent</label>
+              <input type="text" class="form-control" id="new-entry-duration" placeholder="Time spent (h)">
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="new-entry-date">Date</label>
+              <input type="text" class="form-control" id="new-entry-date" placeholder="Date (dd-mm-yyyy)">
+            </div>
+            <button type="submit" id="new-entry-submit" class="btn btn-primary">
+              <span class="glyphicon glyphicon-ok"></span> Add
+            </button>
+          </form>
+        </div>
       </section>
 
-      <section id="main">
+      <section id="main" class="content-section">
+        <h3>Workout log</h3>
         <div id="workout-stats"></div>
-        <table id="workout-log" border=1>
+        <table id="workout-log" class="table">
           <thead>
             <tr>
               <th>Type</th>
               <th>Duration</th>
               <th>Date</th>
-              <th>&nbsp;</th>
+              <th class="actions">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -40,22 +65,27 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/json2/20150503/json2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.1.16/backbone.localStorage-min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
     <script src="js/app.js"></script>
-
-    <!-- Templates -->
+    <script src="js/scripts.js"></script>
 
     <script type="text/template" id="stats-template">
-      <div class="total-duration">Total Workout: <%- totalDuration %></div>
+      <div class="total-duration">Total workout time: <%- totalDuration %></div>
     </script>
 
     <script type="text/template" id="workout-template">
       <td><%- type %></td>
       <td><%- duration %>h</td>
       <td><%- date %></td>
-      <td><button class="destroy">Remove</button></td>
+      <td class="actions">
+        <button type="submit" id="new-entry-submit" class="btn btn-danger destroy">
+          <span class="glyphicon glyphicon-remove"></span> Remove
+        </button>
+      </td>
     </script>
 
   </body>
