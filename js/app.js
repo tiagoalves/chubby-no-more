@@ -45,7 +45,8 @@ ChubbyNoMore = (function () {
       // Reference to this collection's model.
       model: Workout,
 
-      // Save all of the todo items under the `"todos-backbone"` namespace.
+      // Save all of the workout sessions under
+      // the `"workout-exercise"` namespace.
       localStorage: new Backbone.LocalStorage("workout-exercise"),
 
       // Calculation of the total workout time of the user.
@@ -161,10 +162,12 @@ ChubbyNoMore = (function () {
         var minutes = Math.round(60 * (totalDuration % 1));
         minutes = padLeft(minutes);
 
-        this.workoutStats.html(this.statsTemplate({ totalDuration: hours + 'h ' + minutes + 'min' }));
+        this.workoutStats.html(
+          this.statsTemplate({ totalDuration: hours + 'h ' + minutes + 'min' })
+        );
       },
 
-      // Add a single todo item to the list by creating a view for it, and
+      // Add a single workout session to the list by creating a view for it, and
       // appending its element to the `<ul>`.
       addOne: function(workout) {
         var view = new WorkoutView({ model: workout });

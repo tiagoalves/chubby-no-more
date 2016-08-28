@@ -34,6 +34,7 @@ jQuery(function($) {
       }
     });
 
+  // Workout session form validation and validation error container set up
   $('#form-workout-entry').parsley({
     errorsContainer: function(pEle) {
       return pEle.$element.closest('.form-group').children('.validation-errors');
