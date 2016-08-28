@@ -13,6 +13,11 @@ $(function() {
     squash: 'Squash'
   };
 
+  function padLeft(value) {
+    value = String(value);
+    return '00'.substring(0, 2 - value.length) + value;
+  }
+
   // The individual Workout session model
   var Workout = Backbone.Model.extend({
 
@@ -22,6 +27,7 @@ $(function() {
         type: '',
         // Duration in h
         duration: 0,
+        // Date as a string (dd-mm-yyyy)
         date: null
       };
     }
@@ -47,8 +53,14 @@ $(function() {
       }, 0);
     },
 
-    // Order workout log entries by date
-    comparator: 'date'
+    // Order workout log entries by date.
+    // Convert the date to a timestamp so we have an easy way of ordering.
+    // FIXME This is not working.
+    comparator: function (m) {
+      var dateElements = m.get('date').split('-');
+      //     new Date(              y,               m,               d)
+      return new Date(dateElements[2], dateElements[1], dateElements[0]).getTime();
+    }
 
   });
 
@@ -143,7 +155,7 @@ $(function() {
       var totalDuration = Workouts.totalDuration();
       var hours = Math.floor(totalDuration);
       var minutes = '' + Math.round(60 * (totalDuration % 1));
-      minutes = '00'.substring(0, 2 - minutes.length) + minutes;
+      minutes = padLeft(minutes);
 
       this.workoutStats.html(this.statsTemplate({ totalDuration: hours + 'h ' + minutes + 'min' }));
     },
@@ -162,7 +174,9 @@ $(function() {
 
     // On adding a new workout session, add it to the workout log
     // and, consequently, to the browser's local storage.
-    formSubmit: function (e) {
+    // At this point the form has been validated already by Parsley.
+    formSubmit: function(e) {
+
       Workouts.create({
         type: this.exerciseType.val(),
         duration: this.duration.val(),

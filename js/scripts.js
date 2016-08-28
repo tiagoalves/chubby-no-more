@@ -19,7 +19,7 @@ jQuery(function($) {
           composedDate.getFullYear() == y;
       },
       messages: {
-        en: 'The date should be in the format dd-mm-yyyy'
+        en: 'The date should be in the format dd-mm-yyyy.'
       }
     });
 
